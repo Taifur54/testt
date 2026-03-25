@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YesTeachers! Promo</title>
+  <title>YesTeachers! — Official Promo Video</title>
   <style>
     :root {
       --green: #1D9E75;
@@ -27,7 +27,8 @@
       position: relative;
       overflow: hidden;
       background: var(--dark);
-      box-shadow: 0 0 100px rgba(29, 158, 117, 0.4);
+      box-shadow: 0 0 120px rgba(29, 158, 117, 0.5);
+      border-radius: 12px;
     }
 
     /* Progress Bar */
@@ -37,17 +38,17 @@
       left: 0;
       width: 100%;
       height: 8px;
-      background: #222;
-      z-index: 100;
+      background: #1a1a1a;
+      z-index: 999;
     }
     .progress {
       height: 100%;
       width: 0%;
-      background: var(--green);
+      background: linear-gradient(90deg, var(--green), #5DCAA5);
       transition: width 30s linear;
     }
 
-    /* Scene 1 - Opening */
+    /* Scenes */
     .scene {
       position: absolute;
       inset: 0;
@@ -56,94 +57,96 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 1.2s ease;
+      transition: opacity 1.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .scene.active { opacity: 1; }
 
+    /* Scene 1 - Opening */
     .era-text {
-      font-size: 52px;
+      font-size: 54px;
       font-weight: 800;
+      line-height: 1.05;
       text-align: center;
-      line-height: 1.1;
-      margin-bottom: 80px;
+      margin-bottom: 90px;
       opacity: 0;
+      transform: translateY(30px);
     }
-
     .logo {
-      width: 520px;
+      width: 560px;
       opacity: 0;
-      transform: scale(0.6) translateY(40px);
-      transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform: scale(0.4) translateY(60px);
+      transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .logo.active {
       opacity: 1;
       transform: scale(1) translateY(0);
     }
-
     .for-you {
-      font-size: 68px;
+      font-size: 72px;
       font-weight: 800;
       color: var(--green);
-      margin-top: 60px;
+      margin-top: 70px;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
 
-    /* Dashboard Preview */
-    .dashboard-preview {
-      position: absolute;
-      inset: 0;
+    /* Scene 2 - Dashboard Demo */
+    .dashboard-scene {
       background: var(--paper);
       color: #0e0e0e;
-      padding: 40px;
+      padding: 40px 60px;
+      height: 100%;
       display: none;
       flex-direction: column;
-      overflow: hidden;
     }
-    .dashboard-preview.active { display: flex; }
-
+    .dashboard-scene.active { display: flex; }
     .dash-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
+      margin-bottom: 40px;
     }
-    .dash-logo { color: var(--green); font-weight: 800; }
-
+    .dash-logo { font-weight: 800; }
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 28px;
       flex: 1;
     }
     .tool-card {
       background: white;
-      border-radius: 20px;
-      padding: 28px 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transition: all 0.6s ease;
+      border-radius: 24px;
+      padding: 32px 26px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .tool-card.show {
       opacity: 1;
       transform: translateY(0);
     }
-    .tool-icon {
-      font-size: 42px;
-      margin-bottom: 16px;
-    }
-    .tool-name {
+    .tool-icon { font-size: 48px; margin-bottom: 18px; }
+    .tool-name { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .tool-desc { font-size: 15px; line-height: 1.6; color: #555; }
+
+    /* Final CTA overlay */
+    .final-cta {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: white;
+      padding: 18px 48px;
+      border-radius: 999px;
       font-size: 22px;
       font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .tool-desc {
-      font-size: 15px;
-      line-height: 1.5;
-      color: #555;
+      box-shadow: 0 20px 50px rgba(29, 158, 117, 0.5);
+      opacity: 0;
+      white-space: nowrap;
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -152,110 +155,104 @@
 
   <div class="video-frame">
 
-    <!-- Scene 1: Opening -->
+    <!-- SCENE 1: Opening -->
     <div class="scene active" id="scene1">
-      <div class="era-text" id="eraText">This is the beginning<br>of a new era</div>
-      <img src="yes teachers logo .jpg" alt="YesTeachers!" class="logo" id="logo">
-      <div class="for-you" id="forYou">This one's for you</div>
+      <div class="era-text" id="era">This is the beginning<br>of a new era</div>
+      <img src="yes teachers logo .jpg" alt="YesTeachers!" class="logo" id="logoImg">
+      <div class="for-you" id="forYouText">This one's for you</div>
     </div>
 
-    <!-- Dashboard Preview -->
-    <div class="dashboard-preview" id="dashboardScene">
+    <!-- SCENE 2: Dashboard + Features -->
+    <div class="scene dashboard-scene" id="scene2">
       <div class="dash-header">
         <div class="dash-logo">Yes<span style="color:#1D9E75">Teachers</span>!</div>
         <div>Welcome back, Teacher</div>
       </div>
-
-      <div class="tools-grid" id="toolsGrid">
-        <!-- Cards will be injected by JS -->
-      </div>
+      <div class="tools-grid" id="toolsGrid"></div>
     </div>
 
     <!-- Progress Bar -->
     <div class="progress-bar">
-      <div class="progress" id="progress"></div>
+      <div class="progress" id="progressBar"></div>
     </div>
+
+    <!-- Final CTA -->
+    <div class="final-cta" id="finalCTA">Try YesTeachers Free Today →</div>
+
   </div>
 
   <script>
     const scene1 = document.getElementById('scene1');
-    const dashboardScene = document.getElementById('dashboardScene');
-    const logo = document.getElementById('logo');
-    const eraText = document.getElementById('eraText');
-    const forYou = document.getElementById('forYou');
-    const progress = document.getElementById('progress');
+    const scene2 = document.getElementById('scene2');
+    const logo = document.getElementById('logoImg');
+    const era = document.getElementById('era');
+    const forYou = document.getElementById('forYouText');
+    const progress = document.getElementById('progressBar');
+    const finalCTA = document.getElementById('finalCTA');
 
-    // Feature cards (from your dashboard)
+    // Feature cards from your dashboard
     const features = [
-      { icon: "📋", name: "Lesson Planner", desc: "Full lesson with objectives, flow & differentiation in seconds" },
-      { icon: "📝", name: "Lesson Generator", desc: "Complete written lesson content — hook, explanation, examples" },
-      { icon: "🔬", name: "Diagram Generator", desc: "Beautiful labelled science diagrams, ready to print" },
-      { icon: "📐", name: "Quiz Generator", desc: "MCQs + short answer quizzes with full answer keys" },
-      { icon: "✍️", name: "Essay Feedback", desc: "Inline markup, rubric scores & model answers" },
-      { icon: "✅", name: "Answer Grader", desc: "Instant scoring + structured feedback for any student answer" }
+      {icon:"📋", name:"Lesson Planner", desc:"Full lesson with objectives, flow & differentiation — 18 seconds"},
+      {icon:"📝", name:"Lesson Generator", desc:"Complete written lesson content with hook & examples"},
+      {icon:"🔬", name:"Diagram Generator", desc:"Labelled, print-ready science diagrams instantly"},
+      {icon:"📐", name:"Quiz Generator", desc:"MCQs + short answers with full answer keys"},
+      {icon:"✍️", name:"Essay Feedback", desc:"Inline markup, rubric scores & model paragraphs"},
+      {icon:"✅", name:"Answer Grader", desc:"Score + structured feedback in 9 seconds"}
     ];
 
-    function createToolCards() {
+    function createCards() {
       const grid = document.getElementById('toolsGrid');
-      grid.innerHTML = '';
-      features.forEach((f, i) => {
-        const card = document.createElement('div');
-        card.className = 'tool-card';
-        card.innerHTML = `
+      grid.innerHTML = features.map((f, i) => `
+        <div class="tool-card" style="transition-delay: ${i * 140}ms">
           <div class="tool-icon">${f.icon}</div>
           <div class="tool-name">${f.name}</div>
           <div class="tool-desc">${f.desc}</div>
-        `;
-        grid.appendChild(card);
-        
-        // Staggered animation
-        setTimeout(() => {
-          card.classList.add('show');
-        }, 800 + i * 180);
-      });
+        </div>
+      `).join('');
     }
 
-    // Timeline
-    function startPromo() {
-      progress.style.width = '100%';   // 30-second progress
+    function startVideo() {
+      progress.style.width = '100%';   // 30-second progress bar
 
-      // 0–3s : "This is the beginning of a new era"
-      setTimeout(() => {
-        eraText.style.opacity = '1';
-        eraText.style.transform = 'translateY(0)';
-      }, 300);
+      // 0.4s — Era text fades in
+      setTimeout(() => { era.style.transition = 'all 1s cubic-bezier(0.23,1,0.32,1)'; era.style.opacity = '1'; era.style.transform = 'translateY(0)'; }, 400);
 
-      // 2.5s : Logo slams in
-      setTimeout(() => {
-        logo.classList.add('active');
-      }, 2500);
+      // 2.8s — Logo slams in
+      setTimeout(() => { logo.classList.add('active'); }, 2800);
 
-      // 6s : Logo stays, then "This one's for you" appears
+      // 7s — "This one's for you" appears
       setTimeout(() => {
-        forYou.style.transition = 'all 1.2s ease';
+        forYou.style.transition = 'all 1.3s cubic-bezier(0.23,1,0.32,1)';
         forYou.style.opacity = '1';
         forYou.style.transform = 'translateY(0)';
-      }, 6000);
+      }, 7000);
 
-      // 10s : Transition to Dashboard
+      // 11s — Switch to dashboard scene + cards animate in
       setTimeout(() => {
         scene1.style.opacity = '0';
         setTimeout(() => {
           scene1.style.display = 'none';
-          dashboardScene.classList.add('active');
-          createToolCards();
-        }, 1200);
-      }, 10000);
+          scene2.classList.add('active');
+          createCards();
+          // Stagger card animation
+          document.querySelectorAll('.tool-card').forEach((c, i) => {
+            setTimeout(() => c.classList.add('show'), i * 140);
+          });
+        }, 1400);
+      }, 11000);
 
-      // Cards keep popping in until end
+      // 24s — Final CTA pops up
+      setTimeout(() => {
+        finalCTA.style.transition = 'all 1.2s cubic-bezier(0.34,1.56,0.64,1)';
+        finalCTA.style.opacity = '1';
+        finalCTA.style.transform = 'translateX(-50%) scale(1)';
+      }, 24000);
     }
 
-    // Auto start
-    window.onload = () => {
-      startPromo();
-    };
+    // Auto play
+    window.onload = startVideo;
 
-    // Press R to restart (great for recording multiple takes)
+    // Press R to restart (perfect for recording new takes)
     document.addEventListener('keydown', e => {
       if (e.key.toLowerCase() === 'r') location.reload();
     });

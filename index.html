@@ -3,39 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YesTeachers — Effortless Prep. Endless Impact.</title>
+  <title>YesTeachers! Promo</title>
   <style>
     :root {
-      --green: #1e9b75;
-      --dark: #0a0a0a;
-      --text: #ffffff;
-      --muted: #aaaaaa;
+      --green: #1D9E75;
+      --dark: #0e0e0e;
+      --paper: #faf9f6;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Arial', system-ui, sans-serif;
+      font-family: 'Syne', system-ui, sans-serif;
       background: var(--dark);
-      color: var(--text);
-      overflow: hidden;
+      color: white;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
     }
-
-    .container {
+    .video-frame {
       width: 1080px;
       height: 1080px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 0 80px rgba(30, 155, 117, 0.3);
+      background: var(--dark);
+      box-shadow: 0 0 100px rgba(29, 158, 117, 0.4);
     }
 
     /* Progress Bar */
-    .progress-container {
+    .progress-bar {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -51,168 +47,218 @@
       transition: width 30s linear;
     }
 
-    /* Section 1 - Hook */
-    .pill {
+    /* Scene 1 - Opening */
+    .scene {
       position: absolute;
-      top: 218px;
-      left: 350px;
-      width: 380px;
-      height: 44px;
-      background: var(--green);
-      border-radius: 50px;
+      inset: 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transform: scale(0);
-      font-size: 18px;
-      font-weight: bold;
-      color: white;
-      z-index: 10;
+      transition: opacity 1.2s ease;
     }
+    .scene.active { opacity: 1; }
 
-    .headline1 {
-      position: absolute;
-      top: 330px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 86px;
+    .era-text {
+      font-size: 52px;
       font-weight: 800;
       text-align: center;
+      line-height: 1.1;
+      margin-bottom: 80px;
       opacity: 0;
-      white-space: nowrap;
     }
 
-    .headline2 {
-      position: absolute;
-      top: 432px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 86px;
+    .logo {
+      width: 520px;
+      opacity: 0;
+      transform: scale(0.6) translateY(40px);
+      transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .logo.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .for-you {
+      font-size: 68px;
       font-weight: 800;
       color: var(--green);
-      text-align: center;
+      margin-top: 60px;
       opacity: 0;
-      white-space: nowrap;
+      transform: translateY(30px);
     }
 
-    .subtitle {
+    /* Dashboard Preview */
+    .dashboard-preview {
       position: absolute;
-      top: 592px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 30px;
-      color: var(--muted);
-      text-align: center;
-      max-width: 800px;
+      inset: 0;
+      background: var(--paper);
+      color: #0e0e0e;
+      padding: 40px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .dashboard-preview.active { display: flex; }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .dash-logo { color: var(--green); font-weight: 800; }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      flex: 1;
+    }
+    .tool-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.6s ease;
       opacity: 0;
+      transform: translateY(40px);
     }
-
-    /* Animation classes */
-    .animate-in {
-      animation: popIn 0.8s forwards;
+    .tool-card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    .slide-up {
-      animation: slideUp 0.9s forwards;
+    .tool-icon {
+      font-size: 42px;
+      margin-bottom: 16px;
     }
-
-    @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.3); }
-      100% { opacity: 1; transform: scale(1); }
+    .tool-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
-
-    @keyframes slideUp {
-      0% { opacity: 0; transform: translateY(60px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .tool-desc {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #555;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="container" id="videoContainer">
+  <div class="video-frame">
 
-    <!-- Green Pill -->
-    <div class="pill" id="pill">
-      Smart tools built for teachers.
+    <!-- Scene 1: Opening -->
+    <div class="scene active" id="scene1">
+      <div class="era-text" id="eraText">This is the beginning<br>of a new era</div>
+      <img src="yes teachers logo .jpg" alt="YesTeachers!" class="logo" id="logo">
+      <div class="for-you" id="forYou">This one's for you</div>
     </div>
 
-    <!-- Headline 1 -->
-    <div class="headline1" id="headline1">Your prep is</div>
+    <!-- Dashboard Preview -->
+    <div class="dashboard-preview" id="dashboardScene">
+      <div class="dash-header">
+        <div class="dash-logo">Yes<span style="color:#1D9E75">Teachers</span>!</div>
+        <div>Welcome back, Teacher</div>
+      </div>
 
-    <!-- Headline 2 -->
-    <div class="headline2" id="headline2">taking too long.</div>
-
-    <!-- Subtitle -->
-    <div class="subtitle" id="subtitle">
-      Lesson plans. Quizzes. Grading.<br>Done in seconds.
+      <div class="tools-grid" id="toolsGrid">
+        <!-- Cards will be injected by JS -->
+      </div>
     </div>
 
     <!-- Progress Bar -->
-    <div class="progress-container">
+    <div class="progress-bar">
       <div class="progress" id="progress"></div>
     </div>
-
   </div>
 
   <script>
-    const pill = document.getElementById('pill');
-    const headline1 = document.getElementById('headline1');
-    const headline2 = document.getElementById('headline2');
-    const subtitle = document.getElementById('subtitle');
+    const scene1 = document.getElementById('scene1');
+    const dashboardScene = document.getElementById('dashboardScene');
+    const logo = document.getElementById('logo');
+    const eraText = document.getElementById('eraText');
+    const forYou = document.getElementById('forYou');
     const progress = document.getElementById('progress');
 
-    // Start the 30-second progress bar
-    function startProgress() {
-      progress.style.width = '100%';
+    // Feature cards (from your dashboard)
+    const features = [
+      { icon: "📋", name: "Lesson Planner", desc: "Full lesson with objectives, flow & differentiation in seconds" },
+      { icon: "📝", name: "Lesson Generator", desc: "Complete written lesson content — hook, explanation, examples" },
+      { icon: "🔬", name: "Diagram Generator", desc: "Beautiful labelled science diagrams, ready to print" },
+      { icon: "📐", name: "Quiz Generator", desc: "MCQs + short answer quizzes with full answer keys" },
+      { icon: "✍️", name: "Essay Feedback", desc: "Inline markup, rubric scores & model answers" },
+      { icon: "✅", name: "Answer Grader", desc: "Instant scoring + structured feedback for any student answer" }
+    ];
+
+    function createToolCards() {
+      const grid = document.getElementById('toolsGrid');
+      grid.innerHTML = '';
+      features.forEach((f, i) => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.innerHTML = `
+          <div class="tool-icon">${f.icon}</div>
+          <div class="tool-name">${f.name}</div>
+          <div class="tool-desc">${f.desc}</div>
+        `;
+        grid.appendChild(card);
+        
+        // Staggered animation
+        setTimeout(() => {
+          card.classList.add('show');
+        }, 800 + i * 180);
+      });
     }
 
-    // Timeline matching your AE script (approximate seconds)
-    function playAnimation() {
-      // Pill appears ~0.1s
-      setTimeout(() => {
-        pill.classList.add('animate-in');
-      }, 100);
+    // Timeline
+    function startPromo() {
+      progress.style.width = '100%';   // 30-second progress
 
-      // Headline 1 ~0.3s
+      // 0–3s : "This is the beginning of a new era"
       setTimeout(() => {
-        headline1.style.opacity = '1';
-        headline1.classList.add('slide-up');
+        eraText.style.opacity = '1';
+        eraText.style.transform = 'translateY(0)';
       }, 300);
 
-      // Headline 2 ~0.55s
+      // 2.5s : Logo slams in
       setTimeout(() => {
-        headline2.style.opacity = '1';
-        headline2.classList.add('slide-up');
-      }, 550);
+        logo.classList.add('active');
+      }, 2500);
 
-      // Subtitle ~0.85s
+      // 6s : Logo stays, then "This one's for you" appears
       setTimeout(() => {
-        subtitle.style.opacity = '1';
-        subtitle.classList.add('slide-up');
-      }, 850);
+        forYou.style.transition = 'all 1.2s ease';
+        forYou.style.opacity = '1';
+        forYou.style.transform = 'translateY(0)';
+      }, 6000);
 
-      // Start progress immediately
-      startProgress();
+      // 10s : Transition to Dashboard
+      setTimeout(() => {
+        scene1.style.opacity = '0';
+        setTimeout(() => {
+          scene1.style.display = 'none';
+          dashboardScene.classList.add('active');
+          createToolCards();
+        }, 1200);
+      }, 10000);
+
+      // Cards keep popping in until end
     }
 
-    // Auto-play when page loads
+    // Auto start
     window.onload = () => {
-      playAnimation();
-      
-      // Optional: Click anywhere to restart (helpful while recording)
-      document.getElementById('videoContainer').addEventListener('click', () => {
-        location.reload();
-      });
+      startPromo();
     };
 
-    // Keyboard shortcut: Press "R" to restart animation (useful for recording takes)
-    document.addEventListener('keydown', (e) => {
-      if (e.key.toLowerCase() === 'r') {
-        location.reload();
-      }
+    // Press R to restart (great for recording multiple takes)
+    document.addEventListener('keydown', e => {
+      if (e.key.toLowerCase() === 'r') location.reload();
     });
   </script>
-
 </body>
 </html>
